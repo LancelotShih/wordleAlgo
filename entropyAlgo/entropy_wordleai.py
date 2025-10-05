@@ -58,3 +58,40 @@ def filter_words(candidates, guess, feedback):
         if get_feedback(guess, word) == feedback:
             filtered.append(word)
     return filtered
+
+# Interactive main for entropy-based guessing
+def main():
+    candidates = WORDS[:]
+    print("Entropy-based Wordle Assistant")
+    print("Enter your guess and feedback each round.")
+    print("Feedback format: g = green, y = yellow, . = gray: .g.gy for green in pos 2 and 4 and yellow in pos 5")
+    print("Example: guess = crane, feedback = g..y. (c=green, a=yellow, rest gray)\n")
+    while True:
+        print(f"\nRemaining candidates: {len(candidates)}")
+        if len(candidates) <= 50:
+            print(candidates)
+        if candidates:
+            ranked = sorted(candidates, key=lambda w: entropy_for_guess(w, candidates), reverse=True)
+            print("\nTop recommended guesses (by entropy):")
+            for w in ranked[:5]:
+                print(f"  {w} (entropy: {entropy_for_guess(w, candidates):.4f})")
+        guess = input("\nEnter your guess (or 'quit'): ").strip().lower()
+        if guess == "quit":
+            break
+        if len(guess) != 5 or guess not in WORDS:
+            print("Invalid guess. Must be a 5-letter word from the list.")
+            continue
+        feedback = input("Enter feedback (g/y/.): ").strip().lower()
+        if len(feedback) != 5 or not all(c in "gy." for c in feedback):
+            print("Invalid feedback. Must be 5 chars using g/y/.")
+            continue
+        candidates = filter_words(candidates, guess, feedback)
+        if len(candidates) == 1:
+            print(f"\nThe answer must be: {candidates[0]}")
+            break
+        elif not candidates:
+            print("\nNo candidates left. Check your input.")
+            break
+
+if __name__ == "__main__":
+    main()

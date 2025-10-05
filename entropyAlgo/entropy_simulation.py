@@ -3,6 +3,7 @@ from entropy_wordleai import WORDS, get_feedback, select_best_guess, filter_word
 
 STATS_FILE = "entropyAlgo/wordle_stats.txt"
 FAILED_FILE = "entropyAlgo/failed_words_entropy.txt"
+NUM_GAMES = 1  # Change as needed
 
 # Load stats from file
 def load_stats():
@@ -76,7 +77,7 @@ def play_one_game(answer):
 
 def main():
     tally = load_stats()
-    num_games = 900  # Change as needed
+    num_games = NUM_GAMES 
     failed_words = set()
     for i in range(num_games):
         answer = random.choice(WORDS)
