@@ -94,9 +94,14 @@ Interestingly, contrary to what the greedy solution suggests about the best star
 
 Across $1000$ games, the entropy algorithm never fails to find the correct answer, with around $93\%$ of answers found under $4$ guesses. This results in a significantly more consistent performance compared to the greedy algorithm at the cost of larger compute time. 
 
-# Conclusion and Considerations
+# Conclusion, Considerations, and Improvements
 Because the wordle target words will never change, there is an argument to be made that you can precompute the Entropy Algorithm once and run it as a lookup table instead. 
 
-However, that introduces the triviality of the "wordle problem." If you can finitely create a lookup table for an algorithm that looks one step into the future, then you can also create a lookup table for an algorithm that looks 6 steps into the future to create a true entropic ranking. 
+However, that introduces the triviality of the "wordle problem." If you can finitely create a lookup table for an algorithm that looks one step into the future, then you can also create a lookup table for an algorithm that looks 6 steps into the future to create a true entropic ranking that takes into account the absolute best choice with the highest entropy average across 6 steps. This process would take extremely long on a normal computer, and is the untested code that sits within `entropyAlgoV2`. 
+
+The `V2` variant also includes the usage of the full list of words that are valid as opposed to only using the list of words that are actual answers. While it doesn't change much about the entropy of valid words, it does incorporate the entropy of words outside of the possible answers. 
 
 This brute force method would of course be $O(1)$ during runtime like all other lookup table solutions, but would defeat the purpose of the discussion of an algorithm to discover said lookup table. 
+
+# Final Note
+To play this game as a human, using a word like `crate`, `trace`, or `slate` as you starter word and playing it normally is your best bet for the most amount of fun to this game. All entropy based solutions will work to solve every wordle above the average number of guesses made by a human. 

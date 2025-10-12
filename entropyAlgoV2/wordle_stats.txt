@@ -1,0 +1,11 @@
+# Wordle Data Collection Stats
+# Format:
+# guesses: count
+# failed: count
+1: 0
+2: 11
+3: 382
+4: 538
+5: 70
+6: 1
+failed: 0
