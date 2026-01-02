@@ -46,9 +46,9 @@ As a result, this algorithm runs incredibly fast and you can simulate thousands 
 | 6       | 543   | 4.11%      |
 | failed  | 229   | 1.73%      |
 
-Across 13,200 games, there is around a $2\%$ chance that the greedy algorithm fails entirely. However, the other $98\%$ of the time yields a correct answer, with almost $80\%$ of those answers being under $4$ guesses.
+Across 13,200 games, there is around a 2% chance that the greedy algorithm fails entirely. However, the other 98% of the time yields a correct answer, with almost 80% of those answers being under 4 guesses.
 
-Because this algorithm is operating on a fixed dataset, it effectively runs an $O(n)$ decision tree. Because of this, the set of failed words will ALWAYS be the same. In other words, the $2\%$ of words missed are always going to be the same set of words. Here are most of them below found through my testing:
+Because this algorithm is operating on a fixed dataset, it effectively runs an $O(n)$ decision tree. Because of this, the set of failed words will ALWAYS be the same. In other words, the 2% of words missed are always going to be the same set of words. Here are most of them below found through my testing:
 
 |  |  |  |  |
 | ------------ | ------------ | ------------ | ------------ |
